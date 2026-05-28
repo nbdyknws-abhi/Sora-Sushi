@@ -38,6 +38,20 @@ import galleryInterior from "@/assets/gallery-interior.jpg";
 import galleryChef from "@/assets/gallery-chef.jpg";
 import galleryDining from "@/assets/gallery-dining.jpg";
 import logo from "@/assets/logo.png";
+import drinkSake from "@/assets/drink-sake.png";
+import drinkMatcha from "@/assets/drink-matcha.png";
+import drinkHighball from "@/assets/drink-highball.png";
+import drinkHojicha from "@/assets/drink-hojicha.png";
+import menuSpicyTuna from "@/assets/menu-spicy-tuna.png";
+import menuRainbowRoll from "@/assets/menu-rainbow-roll.png";
+import menuVegetableFutomaki from "@/assets/menu-vegetable-futomaki.png";
+import menuTunaNigiri from "@/assets/menu-tuna-nigiri.png";
+import menuHamachiSashimi from "@/assets/menu-hamachi-sashimi.png";
+import menuShoyuRamen from "@/assets/menu-shoyu-ramen.png";
+import menuMisoBlackCod from "@/assets/menu-miso-black-cod.png";
+import menuChickenKaraage from "@/assets/menu-chicken-karaage.png";
+import menuTempuraBento from "@/assets/menu-tempura-bento.png";
+import menuYuzuCheesecake from "@/assets/menu-yuzu-cheesecake.png";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -106,54 +120,55 @@ const FEATURED = [
   },
 ];
 
-const FULL_MENU: { category: string; items: { name: string; desc: string; price: string }[] }[] = [
+const FULL_MENU: { category: string; items: { name: string; desc: string; price: string; img?: string }[] }[] = [
   {
     category: "Sushi Rolls",
     items: [
-      { name: "Spicy Tuna Roll", desc: "Tuna, chili mayo, cucumber, sesame.", price: "$14" },
-      { name: "Dragon Roll", desc: "Eel, cucumber, avocado, torched salmon.", price: "$18" },
-      { name: "Rainbow Roll", desc: "Crab, tuna, salmon, yellowtail, avocado.", price: "$19" },
+      { name: "Spicy Tuna Roll", desc: "Tuna, chili mayo, cucumber, sesame.", price: "$14", img: menuSpicyTuna },
+      { name: "Dragon Roll", desc: "Eel, cucumber, avocado, torched salmon.", price: "$18", img: dishRoll },
+      { name: "Rainbow Roll", desc: "Crab, tuna, salmon, yellowtail, avocado.", price: "$19", img: menuRainbowRoll },
       {
         name: "Vegetable Futomaki",
         desc: "Avocado, cucumber, pickled radish, shiso.",
         price: "$12",
+        img: menuVegetableFutomaki,
       },
     ],
   },
   {
     category: "Nigiri & Sashimi",
     items: [
-      { name: "Salmon Nigiri (2 pc)", desc: "Atlantic salmon, hand-pressed rice.", price: "$9" },
-      { name: "Tuna Nigiri (2 pc)", desc: "Akami bluefin, fresh wasabi.", price: "$10" },
-      { name: "Otoro Sashimi", desc: "Premium fatty tuna belly, 5 slices.", price: "$26" },
-      { name: "Hamachi Sashimi", desc: "Yellowtail, ponzu, micro shiso.", price: "$18" },
+      { name: "Salmon Nigiri (2 pc)", desc: "Atlantic salmon, hand-pressed rice.", price: "$9", img: dishNigiri },
+      { name: "Tuna Nigiri (2 pc)", desc: "Akami bluefin, fresh wasabi.", price: "$10", img: menuTunaNigiri },
+      { name: "Otoro Sashimi", desc: "Premium fatty tuna belly, 5 slices.", price: "$26", img: dishSashimi },
+      { name: "Hamachi Sashimi", desc: "Yellowtail, ponzu, micro shiso.", price: "$18", img: menuHamachiSashimi },
     ],
   },
   {
     category: "Ramen & Hot",
     items: [
-      { name: "Tonkotsu Ramen", desc: "Pork bone broth, chashu, ajitama.", price: "$16" },
-      { name: "Shoyu Ramen", desc: "Soy-based clear broth, bamboo, nori.", price: "$15" },
-      { name: "Miso Black Cod", desc: "48-hour saikyo-miso marinated cod.", price: "$28" },
-      { name: "Chicken Karaage", desc: "Twice-fried, yuzu kosho aioli.", price: "$11" },
+      { name: "Tonkotsu Ramen", desc: "Pork bone broth, chashu, ajitama.", price: "$16", img: dishRamen },
+      { name: "Shoyu Ramen", desc: "Soy-based clear broth, bamboo, nori.", price: "$15", img: menuShoyuRamen },
+      { name: "Miso Black Cod", desc: "48-hour saikyo-miso marinated cod.", price: "$28", img: menuMisoBlackCod },
+      { name: "Chicken Karaage", desc: "Twice-fried, yuzu kosho aioli.", price: "$11", img: menuChickenKaraage },
     ],
   },
   {
     category: "Bento & Desserts",
     items: [
-      { name: "Sora Bento", desc: "Chef's selection of the day.", price: "$24" },
-      { name: "Tempura Bento", desc: "Shrimp & vegetable tempura, rice.", price: "$22" },
-      { name: "Matcha Mochi", desc: "Uji matcha ice cream, rice cake.", price: "$8" },
-      { name: "Yuzu Cheesecake", desc: "Light cheesecake, candied yuzu peel.", price: "$9" },
+      { name: "Sora Bento", desc: "Chef's selection of the day.", price: "$24", img: dishBento },
+      { name: "Tempura Bento", desc: "Shrimp & vegetable tempura, rice.", price: "$22", img: menuTempuraBento },
+      { name: "Matcha Mochi", desc: "Uji matcha ice cream, rice cake.", price: "$8", img: dishDessert },
+      { name: "Yuzu Cheesecake", desc: "Light cheesecake, candied yuzu peel.", price: "$9", img: menuYuzuCheesecake },
     ],
   },
   {
     category: "Drinks",
     items: [
-      { name: "Junmai Sake (carafe)", desc: "Niigata, dry & clean finish.", price: "$14" },
-      { name: "Matcha Latte", desc: "Hot or iced, ceremonial grade.", price: "$6" },
-      { name: "Japanese Whisky Highball", desc: "Suntory Toki, soda, lemon.", price: "$12" },
-      { name: "Hojicha Tea", desc: "Roasted green tea, pot for two.", price: "$7" },
+      { name: "Junmai Sake (carafe)", desc: "Niigata, dry & clean finish.", price: "$14", img: drinkSake },
+      { name: "Matcha Latte", desc: "Hot or iced, ceremonial grade.", price: "$6", img: drinkMatcha },
+      { name: "Japanese Whisky Highball", desc: "Suntory Toki, soda, lemon.", price: "$12", img: drinkHighball },
+      { name: "Hojicha Tea", desc: "Roasted green tea, pot for two.", price: "$7", img: drinkHojicha },
     ],
   },
 ];
@@ -756,10 +771,10 @@ function Featured() {
       id="featured"
       className="relative min-h-screen bg-black bg-[radial-gradient(circle_at_center,rgba(26,46,34,0.18)_0%,rgba(0,0,0,1)_100%)] text-white overflow-hidden flex flex-col justify-between py-24 border-t border-white/5 z-10"
     >
-      <div className="absolute inset-0 w-full h-full z-0 select-none pointer-events-none opacity-25">
+      <div className="absolute inset-0 w-full h-full z-0 select-none pointer-events-none opacity-55">
         <FadingVideo
           src="/sushi.mp4"
-          className="absolute inset-0 w-full h-full object-cover"
+          className="absolute inset-0 w-full h-full object-cover max-w-none"
         />
       </div>
       <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black z-0 select-none pointer-events-none" />
@@ -777,91 +792,115 @@ function Featured() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16">
           {/* Card 1 */}
-          <div className="liquid-glass rounded-[1.25rem] p-6 min-h-[360px] flex flex-col justify-between">
-            <div className="flex items-start justify-between gap-4">
-              <div className="w-11 h-11 rounded-[0.75rem] liquid-glass flex items-center justify-center text-white">
-                <Flame size={20} strokeWidth={1.5} className="text-white" />
+          <div className="liquid-glass rounded-[1.25rem] overflow-hidden flex flex-col min-h-[420px] group border border-white/5 hover:border-white/15 transition-all duration-300">
+            <div className="relative h-48 w-full overflow-hidden">
+              <img
+                src={dishRoll}
+                alt="Dragon Roll"
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
+              <div className="absolute top-4 left-4 w-10 h-10 rounded-[0.75rem] liquid-glass flex items-center justify-center text-white border border-white/10">
+                <Flame size={18} strokeWidth={1.5} className="text-white" />
               </div>
-              <div className="flex flex-wrap justify-end gap-1.5 max-w-[70%]">
+            </div>
+
+            <div className="p-6 flex flex-col justify-between flex-1">
+              <div className="flex flex-wrap gap-1.5 mb-4">
                 {["Sushi Rolls", "Torched Salmon", "Eel & Cucumber", "Chef's Special"].map(
                   (tag) => (
                     <span
                       key={tag}
-                      className="rounded-full px-3 py-1 text-[11px] text-white/90 font-body whitespace-nowrap liquid-glass"
+                      className="rounded-full px-2.5 py-0.5 text-[10px] text-white/90 font-body whitespace-nowrap liquid-glass border border-white/5"
                     >
                       {tag}
                     </span>
                   ),
                 )}
               </div>
-            </div>
-
-            <div className="mt-6">
-              <h3 className="font-heading italic text-white text-3xl md:text-4xl tracking-[-1px] leading-none flex justify-between items-baseline mb-2">
-                <span>Dragon Roll</span>
-                <span className="text-lg font-sans not-italic text-white/60 font-light">$18</span>
-              </h3>
-              <p className="text-sm text-white/80 font-body font-light leading-snug max-w-[32ch]">
-                Eel, cucumber and avocado, crowned with torched salmon.
-              </p>
+              <div>
+                <h3 className="font-heading italic text-white text-3xl md:text-4xl tracking-[-1px] leading-none flex justify-between items-baseline mb-2">
+                  <span>Dragon Roll</span>
+                  <span className="text-lg font-sans not-italic text-white/60 font-light">$18</span>
+                </h3>
+                <p className="text-sm text-white/80 font-body font-light leading-snug">
+                  Eel, cucumber and avocado, crowned with torched salmon.
+                </p>
+              </div>
             </div>
           </div>
 
           {/* Card 2 */}
-          <div className="liquid-glass rounded-[1.25rem] p-6 min-h-[360px] flex flex-col justify-between">
-            <div className="flex items-start justify-between gap-4">
-              <div className="w-11 h-11 rounded-[0.75rem] liquid-glass flex items-center justify-center text-white">
-                <Fish size={20} strokeWidth={1.5} className="text-white" />
+          <div className="liquid-glass rounded-[1.25rem] overflow-hidden flex flex-col min-h-[420px] group border border-white/5 hover:border-white/15 transition-all duration-300">
+            <div className="relative h-48 w-full overflow-hidden">
+              <img
+                src={dishSashimi}
+                alt="Otoro Sashimi"
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
+              <div className="absolute top-4 left-4 w-10 h-10 rounded-[0.75rem] liquid-glass flex items-center justify-center text-white border border-white/10">
+                <Fish size={18} strokeWidth={1.5} className="text-white" />
               </div>
-              <div className="flex flex-wrap justify-end gap-1.5 max-w-[70%]">
+            </div>
+
+            <div className="p-6 flex flex-col justify-between flex-1">
+              <div className="flex flex-wrap gap-1.5 mb-4">
                 {["Sashimi", "Bluefin Tuna", "Premium Belly", "Fresh Wasabi"].map((tag) => (
                   <span
                     key={tag}
-                    className="rounded-full px-3 py-1 text-[11px] text-white/90 font-body whitespace-nowrap liquid-glass"
+                    className="rounded-full px-2.5 py-0.5 text-[10px] text-white/90 font-body whitespace-nowrap liquid-glass border border-white/5"
                   >
                     {tag}
                   </span>
                 ))}
               </div>
-            </div>
-
-            <div className="mt-6">
-              <h3 className="font-heading italic text-white text-3xl md:text-4xl tracking-[-1px] leading-none flex justify-between items-baseline mb-2">
-                <span>Otoro Sashimi</span>
-                <span className="text-lg font-sans not-italic text-white/60 font-light">$26</span>
-              </h3>
-              <p className="text-sm text-white/80 font-body font-light leading-snug max-w-[32ch]">
-                Five slices of premium fatty bluefin tuna belly.
-              </p>
+              <div>
+                <h3 className="font-heading italic text-white text-3xl md:text-4xl tracking-[-1px] leading-none flex justify-between items-baseline mb-2">
+                  <span>Otoro Sashimi</span>
+                  <span className="text-lg font-sans not-italic text-white/60 font-light">$26</span>
+                </h3>
+                <p className="text-sm text-white/80 font-body font-light leading-snug">
+                  Five slices of premium fatty bluefin tuna belly.
+                </p>
+              </div>
             </div>
           </div>
 
           {/* Card 3 */}
-          <div className="liquid-glass rounded-[1.25rem] p-6 min-h-[360px] flex flex-col justify-between">
-            <div className="flex items-start justify-between gap-4">
-              <div className="w-11 h-11 rounded-[0.75rem] liquid-glass flex items-center justify-center text-white">
-                <Soup size={20} strokeWidth={1.5} className="text-white" />
+          <div className="liquid-glass rounded-[1.25rem] overflow-hidden flex flex-col min-h-[420px] group border border-white/5 hover:border-white/15 transition-all duration-300">
+            <div className="relative h-48 w-full overflow-hidden">
+              <img
+                src={dishRamen}
+                alt="Tonkotsu Ramen"
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
+              <div className="absolute top-4 left-4 w-10 h-10 rounded-[0.75rem] liquid-glass flex items-center justify-center text-white border border-white/10">
+                <Soup size={18} strokeWidth={1.5} className="text-white" />
               </div>
-              <div className="flex flex-wrap justify-end gap-1.5 max-w-[70%]">
+            </div>
+
+            <div className="p-6 flex flex-col justify-between flex-1">
+              <div className="flex flex-wrap gap-1.5 mb-4">
                 {["Ramen & Hot", "12-Hour Broth", "Chashu Pork", "Soft Ajitama"].map((tag) => (
                   <span
                     key={tag}
-                    className="rounded-full px-3 py-1 text-[11px] text-white/90 font-body whitespace-nowrap liquid-glass"
+                    className="rounded-full px-2.5 py-0.5 text-[10px] text-white/90 font-body whitespace-nowrap liquid-glass border border-white/5"
                   >
                     {tag}
                   </span>
                 ))}
               </div>
-            </div>
-
-            <div className="mt-6">
-              <h3 className="font-heading italic text-white text-3xl md:text-4xl tracking-[-1px] leading-none flex justify-between items-baseline mb-2">
-                <span>Tonkotsu Ramen</span>
-                <span className="text-lg font-sans not-italic text-white/60 font-light">$16</span>
-              </h3>
-              <p className="text-sm text-white/80 font-body font-light leading-snug max-w-[32ch]">
-                12-hour pork bone broth, chashu, ajitama, scallion.
-              </p>
+              <div>
+                <h3 className="font-heading italic text-white text-3xl md:text-4xl tracking-[-1px] leading-none flex justify-between items-baseline mb-2">
+                  <span>Tonkotsu Ramen</span>
+                  <span className="text-lg font-sans not-italic text-white/60 font-light">$16</span>
+                </h3>
+                <p className="text-sm text-white/80 font-body font-light leading-snug">
+                  12-hour pork bone broth, chashu, ajitama, scallion.
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -895,16 +934,27 @@ function FullMenu() {
                 {cat.items.map((it) => (
                   <li
                     key={it.name}
-                    className="flex items-start justify-between gap-4 sm:gap-6 border-b border-white/5 pb-4 last:border-b-0 last:pb-0"
+                    className="flex gap-4 sm:gap-6 border-b border-white/5 pb-4 last:border-b-0 last:pb-0 items-center group"
                   >
-                    <div className="min-w-0">
-                      <div className="font-medium text-white text-base font-body">{it.name}</div>
-                      <div className="mt-1 text-sm text-white/50 font-body font-light">
-                        {it.desc}
+                    {it.img && (
+                      <div className="shrink-0 w-14 h-14 sm:w-16 sm:h-16 rounded-xl overflow-hidden border border-white/10 bg-white/5">
+                        <img
+                          src={it.img}
+                          alt={it.name}
+                          className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-300"
+                        />
                       </div>
-                    </div>
-                    <div className="shrink-0 text-sm font-semibold text-white font-body">
-                      {it.price}
+                    )}
+                    <div className="flex-1 min-w-0 flex items-start justify-between gap-4">
+                      <div className="min-w-0">
+                        <div className="font-medium text-white text-base font-body">{it.name}</div>
+                        <div className="mt-1 text-sm text-white/50 font-body font-light">
+                          {it.desc}
+                        </div>
+                      </div>
+                      <div className="shrink-0 text-sm font-semibold text-white font-body">
+                        {it.price}
+                      </div>
                     </div>
                   </li>
                 ))}
@@ -955,7 +1005,7 @@ function About() {
           {/* Column 1 - Background Timeline Card */}
           <div className="rounded-2xl bg-black bg-[radial-gradient(circle_at_center,rgba(50,68,68,0.15)_0%,rgba(0,0,0,1)_100%)] min-h-[460px] relative overflow-hidden p-6 flex flex-col justify-between border border-white/5 shadow-inner">
             <FadingVideo
-              src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260507_150203_44a5bd32-516a-47ce-a077-8acbf9aa8991.mp4"
+              src="/video_of_a_japanese_man_m.mp4"
               className="absolute inset-0 w-full h-full object-cover z-0 select-none pointer-events-none opacity-40"
             />
 
@@ -1131,6 +1181,20 @@ const GALLERY_IMAGES = [
     title: "TONKOTSU RAMEN",
     desc: "Traditional slow-simmered 12-hour pork bone broth, topped with sliced chashu, soft ajitama egg, and green onion.",
   },
+  {
+    src: dishBento,
+    bg: "#2A2518", // warm golden/bamboo
+    panel: "#3B3527",
+    title: "SORA BENTO",
+    desc: "Chef's daily premium selection featuring hand-crafted nigiri, light seasonal tempura, steamed rice, and house pickles.",
+  },
+  {
+    src: dishDessert,
+    bg: "#1E2A18", // leafy forest/matcha green
+    panel: "#2B3A25",
+    title: "MATCHA MOCHI",
+    desc: "Stone-ground Uji matcha ice cream wrapped in a delicate, sweet, and chewy artisanal rice cake.",
+  },
 ];
 
 function Gallery() {
@@ -1157,7 +1221,7 @@ function Gallery() {
     const timer = setInterval(() => {
       if (isAnimating) return;
       setIsAnimating(true);
-      setActiveIndex((prev) => (prev + 1) % 4);
+      setActiveIndex((prev) => (prev + 1) % GALLERY_IMAGES.length);
       setTimeout(() => {
         setIsAnimating(false);
       }, 650);
@@ -1171,9 +1235,9 @@ function Gallery() {
     setIsAnimating(true);
 
     if (dir === "next") {
-      setActiveIndex((prev) => (prev + 1) % 4);
+      setActiveIndex((prev) => (prev + 1) % GALLERY_IMAGES.length);
     } else {
-      setActiveIndex((prev) => (prev + 3) % 4);
+      setActiveIndex((prev) => (prev + GALLERY_IMAGES.length - 1) % GALLERY_IMAGES.length);
     }
 
     setTimeout(() => {
@@ -1182,9 +1246,8 @@ function Gallery() {
   };
 
   const centerIdx = activeIndex;
-  const leftIdx = (activeIndex + 3) % 4;
-  const rightIdx = (activeIndex + 1) % 4;
-  const backIdx = (activeIndex + 2) % 4;
+  const leftIdx = (activeIndex + GALLERY_IMAGES.length - 1) % GALLERY_IMAGES.length;
+  const rightIdx = (activeIndex + 1) % GALLERY_IMAGES.length;
 
   const getRoleStyle = (idx: number): React.CSSProperties => {
     if (idx === centerIdx) {

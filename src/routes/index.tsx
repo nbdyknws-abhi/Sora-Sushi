@@ -24,6 +24,7 @@ import {
   ChefHat,
   Wine,
   Coffee,
+  ArrowUp,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { toast, Toaster } from "sonner";
@@ -307,6 +308,22 @@ function IntersectionVideoBackground() {
 
 function Index() {
   const [open, setOpen] = useState(false);
+  const [showScrollTop, setShowScrollTop] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      // Show button when within 1000px of the bottom of the page
+      const isNearBottom = document.documentElement.scrollHeight - (window.scrollY + window.innerHeight) < 1000;
+      setShowScrollTop(isNearBottom);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   return (
     <div className="min-h-screen bg-transparent text-foreground">
@@ -328,6 +345,22 @@ function Index() {
         <Location />
       </main>
       <Footer />
+
+      {/* Back to Top Button */}
+      <AnimatePresence>
+        {showScrollTop && (
+          <motion.button
+            initial={{ opacity: 0, y: 20, scale: 0.8 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 20, scale: 0.8 }}
+            onClick={scrollToTop}
+            className="fixed bottom-6 right-6 md:bottom-10 md:right-10 z-50 flex h-12 w-12 items-center justify-center rounded-full bg-white text-black shadow-[0_0_20px_rgba(255,255,255,0.2)] hover:bg-gray-200 transition-colors backdrop-blur-md"
+            aria-label="Back to top"
+          >
+            <ArrowUp size={20} strokeWidth={2.5} />
+          </motion.button>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

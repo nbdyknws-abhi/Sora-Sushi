@@ -313,7 +313,8 @@ function Index() {
   useEffect(() => {
     const handleScroll = () => {
       // Show button when within 1000px of the bottom of the page
-      const isNearBottom = document.documentElement.scrollHeight - (window.scrollY + window.innerHeight) < 1000;
+      const isNearBottom =
+        document.documentElement.scrollHeight - (window.scrollY + window.innerHeight) < 1000;
       setShowScrollTop(isNearBottom);
     };
 
@@ -402,7 +403,7 @@ function Navbar({ open, setOpen }: { open: boolean; setOpen: (v: boolean) => voi
           className="absolute left-8 top-3 md:top-2 z-50 w-20 h-20 md:w-24 md:h-24 flex items-center justify-center transition-all duration-300 select-none hover:scale-103"
         >
           {/* Rotating Text Ring */}
-          <div 
+          <div
             className={`absolute inset-0 w-full h-full flex items-center justify-center transition-colors duration-300 ${
               open || scrolled ? "text-white/85" : "text-black/70"
             }`}
@@ -416,16 +417,24 @@ function Navbar({ open, setOpen }: { open: boolean; setOpen: (v: boolean) => voi
               />
               <text className="text-[6.5px] fill-current font-sans tracking-[0.25em] uppercase font-bold">
                 <textPath href="#textPath-nav" startOffset="0%">
-                  Sora Sushi • Sora Sushi • Sora Sushi • 
+                  Sora Sushi • Sora Sushi • Sora Sushi •
                 </textPath>
               </text>
             </svg>
           </div>
           {/* Central 3D Logo (text-free) */}
-          <div className={`relative w-12 h-12 md:w-14 md:h-14 rounded-full overflow-hidden border transition-all duration-300 ${
-            open || scrolled ? "border-white/20 bg-black shadow-lg" : "border-black/10 bg-black shadow-md"
-          }`}>
-            <img src={logo} alt="Sora Sushi Logo" className="w-full h-full object-cover scale-110" />
+          <div
+            className={`relative w-12 h-12 md:w-14 md:h-14 rounded-full overflow-hidden border transition-all duration-300 ${
+              open || scrolled
+                ? "border-white/20 bg-black shadow-lg"
+                : "border-black/10 bg-black shadow-md"
+            }`}
+          >
+            <img
+              src={logo}
+              alt="Sora Sushi Logo"
+              className="w-full h-full object-cover scale-110"
+            />
           </div>
         </a>
         <ul className="hidden items-center gap-8 md:flex">
@@ -754,9 +763,7 @@ function Featured() {
 
       <div className="relative z-10 mx-auto max-w-7xl px-8 md:px-16 lg:px-20 flex flex-col justify-between h-full w-full flex-1">
         <div className="mb-auto">
-          <p className="text-sm font-body text-white/80 mb-6 tracking-[0.15em]">
-            SIGNATURE DISHES
-          </p>
+          <p className="text-sm font-body text-white/80 mb-6 tracking-[0.15em]">SIGNATURE DISHES</p>
           <h2 className="font-heading italic text-white text-6xl md:text-7xl lg:text-[6rem] leading-[0.9] tracking-[-3px]">
             Gastronomy
             <br />
@@ -1570,7 +1577,11 @@ function Footer() {
           <div className="md:col-span-5 flex flex-col gap-4">
             <div className="flex items-center text-white">
               <div className="h-20 w-20 rounded-full overflow-hidden border border-white/20 bg-black shadow-xl">
-                <img src={logo} alt="Sora Sushi Logo" className="w-full h-full object-cover scale-110" />
+                <img
+                  src={logo}
+                  alt="Sora Sushi Logo"
+                  className="w-full h-full object-cover scale-110"
+                />
               </div>
             </div>
             <p className="text-sm leading-relaxed max-w-sm text-white/60 font-body font-light">

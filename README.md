@@ -21,6 +21,7 @@ Welcome to the **Sora Sushi Experience** repository! This project is a modern, h
 To get the project up and running on your local machine, follow these steps:
 
 1. **Clone the repository** (or download the source):
+
    ```bash
    git clone <repository-url>
    cd "Sora Sushi Experience"
@@ -50,9 +51,10 @@ To build the application for production, run:
 npm run build
 ```
 
-This will generate an optimized production build in the `dist` folder. 
+This will generate an optimized production build in the `dist` folder.
 
 You can preview the built application locally using:
+
 ```bash
 npm run start
 ```

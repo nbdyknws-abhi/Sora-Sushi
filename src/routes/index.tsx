@@ -756,10 +756,14 @@ function Featured() {
       id="featured"
       className="relative min-h-screen bg-black bg-[radial-gradient(circle_at_center,rgba(26,46,34,0.18)_0%,rgba(0,0,0,1)_100%)] text-white overflow-hidden flex flex-col justify-between py-24 border-t border-white/5 z-10"
     >
-      <FadingVideo
-        src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260325_132944_a0d124bb-eaa1-4082-aa30-2310efb42b4b.mp4"
-        className="absolute inset-0 w-full h-full object-cover z-0 select-none pointer-events-none"
-      />
+      <div className="absolute inset-0 w-full h-full z-0 select-none pointer-events-none opacity-25">
+        <FadingVideo
+          src="/sushi.mp4"
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+      </div>
+      <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black z-0 select-none pointer-events-none" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(0,0,0,0)_0%,rgba(0,0,0,0.85)_100%)] z-0 select-none pointer-events-none" />
 
       <div className="relative z-10 mx-auto max-w-7xl px-8 md:px-16 lg:px-20 flex flex-col justify-between h-full w-full flex-1">
         <div className="mb-auto">

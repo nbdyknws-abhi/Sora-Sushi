@@ -1256,31 +1256,22 @@ function Gallery() {
         filter: "blur(0px)",
         opacity: 1,
         zIndex: 20,
-        left: "50%",
-        top: isMobile ? "45%" : "48%",
-        height: isMobile ? "50%" : "52%",
       };
     }
     if (idx === leftIdx) {
       return {
-        transform: "translate(-50%, -50%) scale(1)",
+        transform: `translate(calc(-50% - ${isMobile ? "35vw" : "22vw"}), -50%) scale(1)`,
         filter: "blur(2px)",
         opacity: 0.85,
         zIndex: 10,
-        left: isMobile ? "15%" : "28%",
-        top: "50%",
-        height: isMobile ? "28%" : "35%",
       };
     }
     if (idx === rightIdx) {
       return {
-        transform: "translate(-50%, -50%) scale(1)",
+        transform: `translate(calc(-50% + ${isMobile ? "35vw" : "22vw"}), -50%) scale(1)`,
         filter: "blur(2px)",
         opacity: 0.85,
         zIndex: 10,
-        left: isMobile ? "85%" : "72%",
-        top: "50%",
-        height: isMobile ? "28%" : "35%",
       };
     }
     return {
@@ -1288,16 +1279,49 @@ function Gallery() {
       filter: "blur(4px)",
       opacity: 0.5,
       zIndex: 5,
-      left: "50%",
-      top: "50%",
-      height: isMobile ? "22%" : "28%",
     };
+  };
+
+  const dragStartRef = useRef<number | null>(null);
+  const dragEndRef = useRef<number | null>(null);
+
+  const handlePointerDown = (e: React.PointerEvent) => {
+    if ((e.target as HTMLElement).closest("a, button")) return;
+    dragStartRef.current = e.clientX;
+    dragEndRef.current = e.clientX;
+  };
+
+  const handlePointerMove = (e: React.PointerEvent) => {
+    if (dragStartRef.current !== null) {
+      dragEndRef.current = e.clientX;
+    }
+  };
+
+  const handlePointerUp = () => {
+    if (dragStartRef.current !== null && dragEndRef.current !== null) {
+      const diff = dragStartRef.current - dragEndRef.current;
+      const swipeThreshold = 50; // px
+      if (diff > swipeThreshold) {
+        navigate("next");
+      } else if (diff < -swipeThreshold) {
+        navigate("prev");
+      }
+    }
+    dragStartRef.current = null;
+    dragEndRef.current = null;
   };
 
   return (
     <section
       id="gallery"
-      className="relative w-full overflow-hidden select-none z-10 border-t border-white/5"
+      className="relative w-full overflow-hidden select-none z-10 border-t border-white/5 cursor-grab active:cursor-grabbing touch-pan-y"
+      onPointerDown={handlePointerDown}
+      onPointerMove={handlePointerMove}
+      onPointerUp={handlePointerUp}
+      onPointerCancel={() => {
+        dragStartRef.current = null;
+        dragEndRef.current = null;
+      }}
       style={{
         height: "100vh",
         backgroundColor: GALLERY_IMAGES[activeIndex].bg,
@@ -1329,9 +1353,12 @@ function Gallery() {
             key={idx}
             className="absolute aspect-[0.6/1] pointer-events-none"
             style={{
+              height: isMobile ? "28vh" : "35vh",
+              left: "50%",
+              top: "50%",
               ...getRoleStyle(idx),
               transition:
-                "transform 650ms cubic-bezier(0.4, 0, 0.2, 1), filter 650ms cubic-bezier(0.4, 0, 0.2, 1), opacity 650ms cubic-bezier(0.4, 0, 0.2, 1), left 650ms cubic-bezier(0.4, 0, 0.2, 1), height 650ms cubic-bezier(0.4, 0, 0.2, 1), top 650ms cubic-bezier(0.4, 0, 0.2, 1)",
+                "transform 650ms cubic-bezier(0.4, 0, 0.2, 1), filter 650ms cubic-bezier(0.4, 0, 0.2, 1), opacity 650ms cubic-bezier(0.4, 0, 0.2, 1)",
               willChange: "transform, filter, opacity",
             }}
           >
@@ -1350,39 +1377,39 @@ function Gallery() {
         ))}
       </div>
 
-      <div className="absolute bottom-6 left-4 sm:bottom-20 sm:left-24 z-[60] max-w-[320px] text-white">
-        <h3 className="font-sans font-bold uppercase tracking-widest text-base sm:text-[22px] mb-2 sm:mb-3 opacity-95">
+      {/* Mobile Text (Above the photo) */}
+      <div className="absolute top-[12%] inset-x-4 flex flex-col items-center text-center text-white z-[60] sm:hidden">
+        <h3 className="font-sans font-bold uppercase tracking-widest text-lg mb-1 opacity-95">
           {GALLERY_IMAGES[activeIndex].title}
         </h3>
-        <p className="hidden sm:block text-xs sm:text-sm font-sans font-light leading-snug opacity-85 mb-4 sm:mb-5">
+        <p className="text-xs font-sans font-light leading-snug opacity-80 mb-3 max-w-[280px]">
           {GALLERY_IMAGES[activeIndex].desc}
         </p>
-
-        <div className="flex gap-3">
-          <button
-            onClick={() => navigate("prev")}
-            className="w-12 h-12 sm:w-16 sm:h-16 rounded-full border-2 border-white flex items-center justify-center text-white hover:scale-108 hover:bg-white/10 transition-all duration-200 active:scale-95"
-            aria-label="Previous Dish"
-          >
-            <ArrowLeft size={24} strokeWidth={2.25} />
-          </button>
-          <button
-            onClick={() => navigate("next")}
-            className="w-12 h-12 sm:w-16 sm:h-16 rounded-full border-2 border-white flex items-center justify-center text-white hover:scale-108 hover:bg-white/10 transition-all duration-200 active:scale-95"
-            aria-label="Next Dish"
-          >
-            <ArrowRight size={24} strokeWidth={2.25} />
-          </button>
-        </div>
+        <a
+          href="#reserve"
+          className="flex items-center gap-1 font-anton text-white opacity-95 hover:opacity-100 tracking-[-0.02em] uppercase select-none text-sm border-b border-white/30 pb-0.5"
+        >
+          DISCOVER IT <ArrowRight className="w-3.5 h-3.5" strokeWidth={2.25} />
+        </a>
       </div>
 
-      <div className="absolute bottom-6 right-4 sm:bottom-20 sm:right-10 z-[60]">
+      {/* Desktop Text (Bottom left/right) */}
+      <div className="hidden sm:block absolute bottom-20 left-24 z-[60] max-w-[320px] text-white">
+        <h3 className="font-sans font-bold uppercase tracking-widest text-[22px] mb-3 opacity-95">
+          {GALLERY_IMAGES[activeIndex].title}
+        </h3>
+        <p className="text-sm font-sans font-light leading-snug opacity-85">
+          {GALLERY_IMAGES[activeIndex].desc}
+        </p>
+      </div>
+
+      <div className="hidden sm:block absolute bottom-20 right-10 z-[60]">
         <a
           href="#reserve"
           className="flex items-center gap-2 font-anton text-white opacity-95 hover:opacity-100 tracking-[-0.02em] leading-none uppercase select-none transition-opacity duration-200"
           style={{ fontSize: "clamp(20px, 4vw, 56px)" }}
         >
-          DISCOVER IT <ArrowRight className="w-5 h-5 sm:w-8 sm:h-8" strokeWidth={2.25} />
+          DISCOVER IT <ArrowRight className="w-8 h-8" strokeWidth={2.25} />
         </a>
       </div>
     </section>

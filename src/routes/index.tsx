@@ -1338,7 +1338,7 @@ function Gallery() {
 
       <div
         className="absolute inset-x-0 flex items-center justify-center pointer-events-none select-none z-2 top-[18%] font-anton font-black text-white opacity-10 uppercase tracking-[-0.02em] leading-none whitespace-nowrap"
-        style={{ fontSize: "clamp(90px, 28vw, 380px)" }}
+        style={{ fontSize: "clamp(45px, 16vw, 380px)" }}
       >
         SORA SUSHI
       </div>
@@ -1377,19 +1377,19 @@ function Gallery() {
         ))}
       </div>
 
-      {/* Mobile Text (Above the photo) */}
-      <div className="absolute top-[12%] inset-x-4 flex flex-col items-center text-center text-white z-[60] sm:hidden">
+      {/* Mobile Text (Below the photo cards) */}
+      <div className="absolute bottom-8 inset-x-4 flex flex-col items-center text-center text-white z-[60] sm:hidden">
         <h3 className="font-sans font-bold uppercase tracking-widest text-lg mb-1 opacity-95">
           {GALLERY_IMAGES[activeIndex].title}
         </h3>
-        <p className="text-xs font-sans font-light leading-snug opacity-80 mb-3 max-w-[280px]">
+        <p className="text-xs font-sans font-light leading-snug opacity-80 mb-4 max-w-[280px]">
           {GALLERY_IMAGES[activeIndex].desc}
         </p>
         <a
           href="#reserve"
-          className="flex items-center gap-1 font-anton text-white opacity-95 hover:opacity-100 tracking-[-0.02em] uppercase select-none text-sm border-b border-white/30 pb-0.5"
+          className="flex items-center gap-2 font-anton text-white opacity-95 hover:opacity-100 tracking-[-0.02em] uppercase select-none transition-opacity duration-200 text-2xl"
         >
-          DISCOVER IT <ArrowRight className="w-3.5 h-3.5" strokeWidth={2.25} />
+          DISCOVER IT <ArrowRight className="w-5 h-5" strokeWidth={2.25} />
         </a>
       </div>
 
